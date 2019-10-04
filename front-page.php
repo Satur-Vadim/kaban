@@ -25,7 +25,7 @@
 	<?php endif; ?>
 </section>
 <section class="products__main-page">
-<?php $prod = new WP_Query(array('post_type' => 'sheensay_product'));
+<?php $prod = new WP_Query(array('post_type' => 'sheensay_product',  'posts_per_page' => 3, 'orderby' => 'date', 'order' => 'ASC'));
  		while ( $prod->have_posts() ) : $prod->the_post(); ?>
  			<div class="product__main-page">
  				<?php 

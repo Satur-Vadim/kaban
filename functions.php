@@ -255,9 +255,9 @@ final class Sheensay_Product {
         register_post_type( 'sheensay_product', $args );
  
  
-        if ( current_user_can( 'manage_options' ) )
+        //if ( current_user_can( 'manage_options' ) )
         // сбрасывает все правила определения URL. 
-            flush_rewrite_rules();
+           // flush_rewrite_rules();
     }
  
     function product_permalink_structure( $post_link, $post ) {

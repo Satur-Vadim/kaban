@@ -8,7 +8,10 @@
  */
 
 ?>
-
+<?php 
+if (get_post_type( $post->ID ) == 'product' )
+    update_post_meta( $post->ID, '_last_viewed', current_time('mysql') );
+?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php

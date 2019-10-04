@@ -14,28 +14,14 @@ get_header();
 		<main id="main" class="site-main">
 
 		<?php if ( have_posts() ) : ?>
-		<div class="archive-container">
-			<?php if (get_queried_object()->name != 'sheensay_product'): 
-				  echo '<h1 class="archive__title">'.get_queried_object()->name.'</h1>';
-				  else:
-				  echo '<h1 class="archive__title">All products</h1>';
-				  endif;
-				  $categories = get_terms('sheensay_product_type', array('hierarchical' => true,'hide_empty' => false,'parent' => 0));
+
+			<header class="page-header">
+				<?php
+				the_archive_title( '<h1 class="page-title">', '</h1>' );
+				the_archive_description( '<div class="archive-description">', '</div>' );
 				?>
-			<div class="archive-group">
-				<div class="archive-categorys">
-					<?php foreach ($categories as $cat){ ?>
-					<div class="archive-categorys__item <?php if(get_queried_object()->name === $cat->name){echo 'active';} ?>">
-						<a class="archive-categorys__item__link" href="<?php echo get_term_link($cat,'sheensay_product_type') ?>">
-							<span class="btn"><?php echo $cat->name; ?></span>
-						</a>
-					</div>
-					<?php } ?>
-				</div>
-				<div class="archive-sort">
-					
-				</div>
-			</div>
+			</header><!-- .page-header -->
+
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) :
@@ -58,7 +44,7 @@ get_header();
 
 		endif;
 		?>
-		</div>
+
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

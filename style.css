@@ -1317,13 +1317,13 @@ object {
 }
 
 .products__main-page .product__main-page:nth-child(1){
-	background: #E7E9EA;
+	background: #F7F7F8;
 }
 .products__main-page .product__main-page:nth-child(2){
 	background: #C5C5C5;
 }
 .products__main-page .product__main-page:nth-child(3){
-	background: #F7F7F8;
+	background: #E7E9EA;
 }
 .products__main-page .product__main-page:nth-child(1) .product__name, .products__main-page .product__main-page:nth-child(3) .product__name{
 	color: #111111;
@@ -1513,5 +1513,84 @@ object {
 	color: #585858;
 	font-size: 32px;
 	font-weight: bold;
+}
+.archive-group{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 80px;
+}
+.archive-group .archive-sort__dropdown{
+	padding: 16px 150px 16px 16px;
+	border: 2px solid #E4E4E4;
+	color: #111;
+	outline: none;
+}
+.archive-container .rows{
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -10px;
+	margin-right: -10px;
+}
+.archive-container .rows article{
+	width: 25%;
+	padding: 0 10px;
+	position: relative;
+	margin-bottom: 20px;
+}
+.prod-catalog .post_prod-content{
+	position: absolute;
+	width: calc(100% - 20px);
+	bottom: 25px;
+	text-align: center;
+}
+.post_prod-img img{
+	width: 100%;
+}
+.archive-container .prod-catalog article .entry-footer{
+	position: absolute;
+	bottom: 0;
+}
+.post_prod-title{
+	color: #111111;
+	font-size: 24px;
+	font-weight: 500;
+	letter-spacing: -0.5px;
+	margin-bottom: 10px;
+}
+.span_ptice__prod{
+	opacity: 0.7;	
+	color: #656565;
+	padding: 6px 10px;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    border: 2px solid transparent;
+}
+.archive-container .rows article:hover  .span_ptice__prod{
+	border: 2px solid #E4E4E4;
+	color: #111;
+	opacity: 1;
+}
+.pagination .nav-links{
+	display: flex;
+	justify-content: center;
+}
+.pagination .nav-links .page-numbers{
+	color: #111;
+	text-decoration: none;
+	font-size: 20px;	
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	width: 60px;
+	height: 60px;
+	justify-content: center;
+}
+.pagination .nav-links .page-numbers.current{
+	border: 2px solid #DEDEDE;
+}
+.nav-links .next, .nav-links .prev{
+	padding: 0 60px;
 }
 /* End archive */
