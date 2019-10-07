@@ -11,49 +11,47 @@
  *
  * @package kaban
  */
-
 get_header();
 ?>
-
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-
+<div id="primary" class="content-area">
+	<main id="main" class="site-main">
 		<?php
-		if ( have_posts() ) :
-
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
+		if ( have_posts() ) : ?>
+		<section class="blog blog-page">
+			<div class="container">
+				<div class="btn-group">
+					<div class="search-form">
+						<?php get_search_form(); ?>	
+					</div>
+					<div class="archive-sort"><!-- sort select -->
+						<select class="archive-sort__dropdown" name="sort-posts" id="sortbox" onchange="document.location.search=this.options[this.selectedIndex].value;">
+							<option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'date' && isset($_GET["order"]) && trim($_GET["order"]) == 'DESC' ){ echo 'selected'; } ?> value="?orderby=date&order=DESC">Newest</option>
+							<option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'date' && isset($_GET["order"]) && trim($_GET["order"]) == 'ASC' ){ echo 'selected'; } ?>  value="?orderby=date&order=ASC">Oldest</option>
+							<option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'title' && isset($_GET["order"]) && trim($_GET["order"]) == 'ASC' ){ echo 'selected'; } ?> value="?orderby=title&order=ASC" value="?orderby=title&order=ASC">A-Z Asc</option>
+							<option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'title' && isset($_GET["order"]) && trim($_GET["order"]) == 'DESC' ){ echo 'selected'; } ?>  value="?orderby=title&order=DESC">A-Z Desc</option>
+						</select><!-- end sort select -->
+					</div>
+				</div>
+				<div class="blog__blocks">
 				<?php
-			endif;
-
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
+				$grid_item = 1;
+				while ( have_posts() ) : the_post();?>
+					<div class="blog__block blog__block<?php echo $grid_item ?>">
+						<div class="blog__category-name"><?php the_category( $post->ID ); ?></div>
+						<div class="blog__block-content">
+							<div class="blog__blog-name"><?php the_title() ?></div>
+							<div class="blog__desc"><?php the_excerpt(); ?></div>
+							<?php if(get_field('show_more_but', $post->ID) == true){ ?>
+							<div class="blog__button"><a href="<?php echo get_permalink(); ?>"><span class="btn">Read more</span></a></div>
+							<?php } ?>
+						</div>
+					</div>
+				<?php $grid_item++; endwhile; ?>
+				</div>
+			</div>
+		</section>
+		<?php else : get_template_part( 'template-parts/content', 'none' ); endif;?>
+	</main><!-- #main -->
+</div><!-- #primary -->
 <?php
-get_sidebar();
 get_footer();

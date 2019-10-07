@@ -62,14 +62,40 @@ get_header();
           	'next_text'    => 'Next',
         	);
         	the_posts_pagination($pag);
-
-		else :
-
+			else :
 			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-		</div>
+			endif;
+			// Recently Viewed
+			$args = array(
+				'post_type' => 'sheensay_product',
+				'posts_per_page' => 4,
+				'meta_key' => '_last_viewed',
+				'orderby' => 'meta_value',
+				'order' => 'DESC'
+			);
+			query_posts( $args ); 
+			if( have_posts() ) : ?>
+			<div class="recently-viewed">
+				<div class="recently-viewed__title">Recently viewed</div>
+				<div class="recently-viewed__list rows">
+					<?php while( have_posts() ) : the_post(); ?>
+					    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+							<div class="post_prod-img">
+							<?php kaban_post_thumbnail(); ?>
+							</div>
+							<div class="post_prod-content">
+								<div class="post_prod-title"><?php the_title()?></div>	
+								<div class="post_prod-price"><span class="span_ptice__prod"><?php the_field('price_usd') ?></span></div>
+							</div>
+							<div class="entry-footer">
+								<?php kaban_entry_footer(); ?>
+							</div>
+						</article>
+					<?php endwhile; ?>
+				</div>
+			</div>
+			<?php endif; wp_reset_query(); ?>	
+			</div>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
