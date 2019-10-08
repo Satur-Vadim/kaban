@@ -37,7 +37,7 @@ get_header();
 				$grid_item = 1;
 				while ( have_posts() ) : the_post();?>
 					<div class="blog__block blog__block<?php echo $grid_item ?>">
-						<div class="blog__category-name"><?php the_category( $post->ID ); ?></div>
+						<div class="blog__category-name"><?php $cat = get_the_category( $post->ID ); echo $cat[0]->name ?></div>
 						<div class="blog__block-content">
 							<div class="blog__blog-name"><?php the_title() ?></div>
 							<div class="blog__desc"><?php the_excerpt(); ?></div>
