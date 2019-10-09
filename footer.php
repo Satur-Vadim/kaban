@@ -44,15 +44,13 @@
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
 <script>
-$(document).ready(function(){
-	var padding = $(".site-header").height();
-	$('.site').css('padding-top',padding);
-});
+	( function( $ ) {
+	$(document).ready(function(){
+		var padding = $(".site-header").height();
+		$('.site').css('padding-top',padding);
+	});
+} )( jQuery );
 </script>
 
 </body>

@@ -36,22 +36,22 @@ get_header();
 			        </select><!-- end sort select -->
 				</div>
 			</div>
-			<div class="rows prod-catalog">
+			<div class="prod-list">
 			<?php
 			while ( have_posts() ) :
 				the_post(); ?>
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<div class="post_prod-img">
-					<?php kaban_post_thumbnail(); ?>
-					</div>
-					<div class="post_prod-content">
-						<div class="post_prod-title"><?php the_title()?></div>	
-						<div class="post_prod-price"><span class="span_ptice__prod"><?php the_field('price_usd') ?></span></div>
-					</div>
-					<div class="entry-footer">
-						<?php kaban_entry_footer(); ?>
-					</div>
-				</article>
+				<article class="prod-list__prod-article">
+				<div class="prod-list__prod-img">
+				<?php kaban_post_thumbnail(); ?>
+				</div>
+				<div class="prod-list__content">
+					<div class="prod-list__prod-title"><?php the_title()?></div>	
+					<div class="post_prod-price"><span class="span_price__prod"><?php the_field('price_usd') ?></span></div>
+				</div>
+				<footer class="prod-list__edit">
+					<?php kaban_entry_footer(); ?>
+				</footer>
+			</article>
             <?php  
 			endwhile;
 			echo "</div>";// rows
@@ -76,19 +76,19 @@ get_header();
 			if( have_posts() ) : ?>
 			<div class="recently-viewed">
 				<div class="recently-viewed__title">Recently viewed</div>
-				<div class="recently-viewed__list rows">
+				<div class="prod-list">
 					<?php while( have_posts() ) : the_post(); ?>
-					    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-							<div class="post_prod-img">
+					    <article class="prod-list__prod-article">
+							<div class="prod-list__prod-img">
 							<?php kaban_post_thumbnail(); ?>
 							</div>
-							<div class="post_prod-content">
-								<div class="post_prod-title"><?php the_title()?></div>	
-								<div class="post_prod-price"><span class="span_ptice__prod"><?php the_field('price_usd') ?></span></div>
+							<div class="prod-list__content">
+								<div class="prod-list__prod-title"><?php the_title()?></div>	
+								<div class="post_prod-price"><span class="span_price__prod"><?php the_field('price_usd') ?></span></div>
 							</div>
-							<div class="entry-footer">
+							<footer class="prod-list__edit">
 								<?php kaban_entry_footer(); ?>
-							</div>
+							</footer>
 						</article>
 					<?php endwhile; ?>
 				</div>

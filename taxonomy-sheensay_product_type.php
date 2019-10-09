@@ -37,67 +37,56 @@ get_header();
 			        </select>
 				</div>
 			</div>
-			<div class="rows prod-catalog">
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
+			<div class="prod-list">
+			<?php while ( have_posts() ) :
 				the_post(); ?>
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<div class="post_prod-img">
-					<?php kaban_post_thumbnail(); ?>
-					</div>
-					<div class="post_prod-content">
-						<div class="post_prod-title"><?php the_title()?></div>	
-						<div class="post_prod-price"><span class="span_ptice__prod"><?php the_field('price_usd') ?></span></div>
-					</div>
-					<footer class="entry-footer">
-						<?php kaban_entry_footer(); ?>
-					</footer><!-- .entry-footer -->
-				</article><!-- #post-<?php the_ID(); ?> -->
-            <?php  
-			endwhile;
-			echo "</div>";// rows
-			 $pag = array(
-          	'prev_text'    => 'Previous',
-          	'next_text'    => 'Next',
-        	);
+				<article class="prod-list__prod-article">
+				<div class="prod-list__prod-img">
+				<?php kaban_post_thumbnail(); ?>
+				</div>
+				<div class="prod-list__content">
+					<div class="prod-list__prod-title"><?php the_title()?></div>	
+					<div class="post_prod-price"><span class="span_price__prod"><?php the_field('price_usd') ?></span></div>
+				</div>
+				<footer class="prod-list__edit">
+					<?php kaban_entry_footer(); ?>
+				</footer>
+			</article>
+            <?php  endwhile; echo "</div>";// rows
+			$pag = array('prev_text'=> 'Previous','next_text'=> 'Next',); //paginate setings
         	the_posts_pagination($pag);
-			else :
+			else : // if have_posts()
 			get_template_part( 'template-parts/content', 'none' );
 			endif;
-			// Recently Viewed
 			$args = array(
 				'post_type' => 'sheensay_product',
 				'posts_per_page' => 4,
 				'meta_key' => '_last_viewed',
 				'orderby' => 'meta_value',
-				'order' => 'DESC'
-			);
+				'order' => 'DESC');
 			query_posts( $args ); 
 			if( have_posts() ) : ?>
 			<div class="recently-viewed">
 				<div class="recently-viewed__title">Recently viewed</div>
-				<div class="recently-viewed__list rows">
+				<div class="prod-list">
 					<?php while( have_posts() ) : the_post(); ?>
-					    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-							<div class="post_prod-img">
+					   <article class="prod-list__prod-article">
+							<div class="prod-list__prod-img">
 							<?php kaban_post_thumbnail(); ?>
 							</div>
-							<div class="post_prod-content">
-								<div class="post_prod-title"><?php the_title()?></div>	
-								<div class="post_prod-price"><span class="span_ptice__prod"><?php the_field('price_usd') ?></span></div>
+							<div class="prod-list__content">
+								<div class="prod-list__prod-title"><?php the_title()?></div>	
+								<div class="post_prod-price"><span class="span_price__prod"><?php the_field('price_usd') ?></span></div>
 							</div>
-							<div class="entry-footer">
-								<?php kaban_entry_footer(); ?>
-							</div>
+							<footer class="prod-list__edit"><?php kaban_entry_footer(); ?></footer>
 						</article>
 					<?php endwhile; ?>
 				</div>
 			</div>
 			<?php endif; wp_reset_query(); ?>	
 			</div>
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</main>
+	</div>
 
 <?php
 get_sidebar();
