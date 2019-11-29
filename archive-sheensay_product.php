@@ -16,29 +16,41 @@ get_header();
 		<div class="archive-container">
 			<?php echo '<h1 class="archive__title">All products</h1>';
 				  $categories = get_terms('sheensay_product_type', array('hierarchical' => true,'hide_empty' => false,'parent' => 0));
-				?>
+			?>
 			<div class="archive-group">
 				<div class="archive-categorys"><!-- swith cat -->
-					<?php foreach ($categories as $cat){ ?>
+					<?php foreach ($categories as $cat): ?>
 					<div class="archive-categorys__item <?php if(get_queried_object()->name === $cat->name){echo 'active';} ?>">
 						<a class="archive-categorys__item__link" href="<?php echo get_term_link($cat,'sheensay_product_type') ?>">
 							<span class="btn"><?php echo $cat->name; ?></span>
 						</a>
 					</div>
-					<?php } ?>
+					<?php endforeach ?>
 				</div><!--  end swith cat -->
 				<div class="archive-sort"><!-- sort select -->
-			        <select class="archive-sort__dropdown" name="sort-posts" id="sortbox" onchange="document.location.search=this.options[this.selectedIndex].value;">
-			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'date' && isset($_GET["order"]) && trim($_GET["order"]) == 'DESC' ){ echo 'selected'; } ?> value="?orderby=date&order=DESC">Newest</option>
-			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'date' && isset($_GET["order"]) && trim($_GET["order"]) == 'ASC' ){ echo 'selected'; } ?>  value="?orderby=date&order=ASC">Oldest</option>
-			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'title' && isset($_GET["order"]) && trim($_GET["order"]) == 'ASC' ){ echo 'selected'; } ?> value="?orderby=title&order=ASC" value="?orderby=title&order=ASC">A-Z Asc</option>
-			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'title' && isset($_GET["order"]) && trim($_GET["order"]) == 'DESC' ){ echo 'selected'; } ?>  value="?orderby=title&order=DESC">A-Z Desc</option>
+
+			        <select class="archive-sort__dropdown" name="sort-posts" id="sortbox" 
+			        onchange="document.location.search=this.options[this.selectedIndex].value;">
+
+			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'date' && isset($_GET["order"]) && trim($_GET["order"]) == 'DESC' ){ echo 'selected'; } ?> value="?orderby=date&order=DESC">Newest
+			        </option>
+
+			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'date' && isset($_GET["order"]) && trim($_GET["order"]) == 'ASC' )
+			        	{ echo 'selected'; } ?>  value="?orderby=date&order=ASC">Oldest
+			        </option>
+
+			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'title' && isset($_GET["order"]) && trim($_GET["order"]) == 'ASC' ){ echo 'selected'; } ?> value="?orderby=title&order=ASC" value="?orderby=title&order=ASC">A-Z Asc
+			        </option>
+
+			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'title' && isset($_GET["order"]) && trim($_GET["order"]) == 'DESC' ){ echo 'selected'; } ?>  value="?orderby=title&order=DESC">A-Z Desc
+			        </option>
+
 			        </select><!-- end sort select -->
+
 				</div>
 			</div>
 			<div class="prod-list">
-			<?php
-			while ( have_posts() ) :
+			<?php while ( have_posts() ) :
 				the_post(); ?>
 				<article class="prod-list__prod-article">
 				<div class="prod-list__prod-img">
@@ -54,12 +66,8 @@ get_header();
 			</article>
             <?php  
 			endwhile;
-			echo "</div>";// rows
-			$pag = array(
-          		'prev_text'    => 'Previous',
-          		'next_text'    => 'Next',
-        	);
-        	the_posts_pagination($pag);
+			echo "</div>";// prod-list
+        	the_posts_pagination(array('prev_text'=>'Previous','next_text'=>'Next',));
 			else :
 			get_template_part( 'template-parts/content', 'none' );
 			endif;

@@ -28,13 +28,26 @@ get_header();
 					</div>
 					<?php } ?>
 				</div>
-				<div class="archive-sort">
-			        <select class="archive-sort__dropdown" name="sort-posts" id="sortbox" onchange="document.location.search=this.options[this.selectedIndex].value;">
-			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'date' && isset($_GET["order"]) && trim($_GET["order"]) == 'DESC' ){ echo 'selected'; } ?> value="?orderby=date&order=DESC">Newest</option>
-			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'date' && isset($_GET["order"]) && trim($_GET["order"]) == 'ASC' ){ echo 'selected'; } ?>  value="?orderby=date&order=ASC">Oldest</option>
-			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'title' && isset($_GET["order"]) && trim($_GET["order"]) == 'ASC' ){ echo 'selected'; } ?> value="?orderby=title&order=ASC" value="?orderby=title&order=ASC">A-Z Asc</option>
-			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'title' && isset($_GET["order"]) && trim($_GET["order"]) == 'DESC' ){ echo 'selected'; } ?>  value="?orderby=title&order=DESC">A-Z Desc</option>
-			        </select>
+				<div class="archive-sort"><!-- sort select -->
+
+			        <select class="archive-sort__dropdown" name="sort-posts" id="sortbox" 
+			        onchange="document.location.search=this.options[this.selectedIndex].value;">
+
+			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'date' && isset($_GET["order"]) && trim($_GET["order"]) == 'DESC' ){ echo 'selected'; } ?> value="?orderby=date&order=DESC">Newest
+			        </option>
+
+			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'date' && isset($_GET["order"]) && trim($_GET["order"]) == 'ASC' )
+			        	{ echo 'selected'; } ?>  value="?orderby=date&order=ASC">Oldest
+			        </option>
+
+			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'title' && isset($_GET["order"]) && trim($_GET["order"]) == 'ASC' ){ echo 'selected'; } ?> value="?orderby=title&order=ASC" value="?orderby=title&order=ASC">A-Z Asc
+			        </option>
+
+			        <option <?php if( isset($_GET["orderby"]) && trim($_GET["orderby"]) == 'title' && isset($_GET["order"]) && trim($_GET["order"]) == 'DESC' ){ echo 'selected'; } ?>  value="?orderby=title&order=DESC">A-Z Desc
+			        </option>
+
+			        </select><!-- end sort select -->
+
 				</div>
 			</div>
 			<div class="prod-list">

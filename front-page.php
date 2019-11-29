@@ -38,7 +38,9 @@
 					<?php } ?>
 					<div class="product__main-page__about"><?php the_field('about') ?></div>
 					<div class="product__main-page__infos"><?php the_field('before_button_text') ?></div>
-					<div class="product__main-page__button"><a class="product__main-page__btn" href="<?php echo get_permalink(); ?>"><span class="btn">Learn more</span></a></div>
+					<div class="product__main-page__button">
+						<a class="product__main-page__btn" href="<?php echo get_permalink(); ?>"><span class="btn">Learn more</span></a>
+					</div>
 				</div>
 			</div>
 		<?php endwhile; ?>
@@ -47,7 +49,7 @@
 	<?php
 	$args = 
 	$categories = get_terms('sheensay_product_type', array('hierarchical' => true,'hide_empty' => false,'parent' => 0));
-	foreach ($categories as $cat){ ?>
+	foreach ($categories as $cat): ?>
 	<div class="prod-cat__item">
 		<div class="prod-cat__content">
 			<div class="prod-cat__short-text"><?php echo $cat->description; ?></div>
@@ -62,7 +64,7 @@
 			<img class="prod-cat__img" src="<?php echo get_field('image_cat', 'term_' . $cat->term_id); ?>" alt="">
 		</div>		
 	</div>
-	<?php } ?>
+	<?php endforeach ?>
 </section>
 <section class="blog">
 	<div class="container">
